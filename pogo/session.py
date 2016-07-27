@@ -16,6 +16,8 @@ from POGOProtos.Networking.Requests.Messages import DownloadSettingsMessage_pb2
 from POGOProtos.Networking.Requests.Messages import UseItemEggIncubatorMessage_pb2
 from POGOProtos.Networking.Requests.Messages import RecycleInventoryItemMessage_pb2
 from POGOProtos.Networking.Requests.Messages import NicknamePokemonMessage_pb2
+from POGOProtos.Networking.Requests.Messages import GetGymDetailsMessage_pb2
+from POGOProtos.Networking.Requests.Messages import ClaimCodenameMessage_pb2
 
 # Load local
 import api
@@ -301,7 +303,7 @@ class PogoSession(object):
         # Return everything
         return self._state.fortSearch
 
-    # set an Egg into an incubator
+    # Get Fort details
     def getFortDetails(self, fort):
 
         # Create request
@@ -322,6 +324,50 @@ class PogoSession(object):
 
         # Return everything
         return self._state.fortDetails
+
+    # Get Gym details
+    def getGymDetails(self, fort):
+        # Create request
+        payload = [Request_pb2.Request(
+            request_type=RequestType_pb2.GET_GYM_DETAILS,
+            request_message=GetGymDetailsMessage_pb2.GetGymDetailsMessage(
+                gym_id=fort.id,
+                gym_latitude=fort.latitude,
+                gym_longitude=fort.longitude,
+                player_latitude=self.location.latitude,
+                player_longitude=self.location.longitude
+
+            ).SerializeToString()
+        )]
+
+        # Send
+        res = self.wrapAndRequest(payload)
+
+        # Parse
+        self._state.gymDetails.ParseFromString(res.returns[0])
+        # Return everything
+        return self._state.gymDetails
+
+     # Claim Username
+    def claimCodename(self, codename):
+        # Create request
+        payload = [Request_pb2.Request(
+            request_type=RequestType_pb2.CLAIM_CODENAME,
+            request_message=ClaimCodenameMessage_pb2.ClaimCodenameMessage(
+                codename = codename,
+    
+            ).SerializeToString()
+        )]
+    
+        # Send
+        res = self.wrapAndRequest(payload)
+    
+        # Parse
+        self._state.claimCodename.ParseFromString(res.returns[0])
+        # Return everything
+        return self._state.claimCodename
+
+
 
     # Get encounter
     def encounterPokemon(self, pokemon):
