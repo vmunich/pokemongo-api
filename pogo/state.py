@@ -14,6 +14,9 @@ from Networking.Responses import UseItemEggIncubatorResponse_pb2
 from Networking.Responses import RecycleInventoryItemResponse_pb2
 from Networking.Responses import UseItemCaptureResponse_pb2
 from Networking.Responses import NicknamePokemonResponse_pb2
+from Networking.Responses import GetGymDetailsResponse_pb2
+from Networking.Responses import ClaimCodenameResponse_pb2
+
 
 
 class State(object):
@@ -27,6 +30,8 @@ class State(object):
         self.mapObjects =  GetMapObjectsResponse_pb2.GetMapObjectsResponse()
         self.fortSearch = FortSearchResponse_pb2.FortSearchResponse()
         self.fortDetails = FortDetailsResponse_pb2.FortDetailsResponse()
+        self.gymDetails = GetGymDetailsResponse_pb2.GetGymDetailsResponse()
+        self.claimCodename = ClaimCodenameResponse_pb2.ClaimCodenameResponse()
         self.encounter = EncounterResponse_pb2.EncounterResponse()
         self.catch = CatchPokemonResponse_pb2.CatchPokemonResponse()
         self.itemCapture = UseItemCaptureResponse_pb2.UseItemCaptureResponse()
