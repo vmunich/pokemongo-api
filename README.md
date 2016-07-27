@@ -50,6 +50,9 @@ def getBadges(self):
 
 # Get Settings
 def getDownloadSettings(self):
+
+# Assign In-game Username
+def claimCodename(self, codename):
 ```
 Every method has been tested. Pull requests are encouraged.
 
