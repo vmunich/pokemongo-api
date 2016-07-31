@@ -14,7 +14,6 @@ from Networking.Responses import UseItemEggIncubatorResponse_pb2
 from Networking.Responses import RecycleInventoryItemResponse_pb2
 from Networking.Responses import UseItemCaptureResponse_pb2
 from Networking.Responses import NicknamePokemonResponse_pb2
-from Networking.Responses import GetGymDetailsResponse_pb2
 from Networking.Responses import ClaimCodenameResponse_pb2
 
 
