@@ -325,13 +325,13 @@ class PogoSession(object):
         return self._state.fortDetails
 
 
-     # Claim Username
-    def claimCodename(self, codename):
+     # Change Username
+    def changeUsername(self, username):
         # Create request
         payload = [Request_pb2.Request(
             request_type=RequestType_pb2.CLAIM_CODENAME,
             request_message=ClaimCodenameMessage_pb2.ClaimCodenameMessage(
-                codename = codename,
+                codename = username,
     
             ).SerializeToString()
         )]
